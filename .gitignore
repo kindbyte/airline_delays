@@ -1,0 +1,18 @@
+#Временные файлы Python
+
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+#Временные файлы Jupyter Notebook
+
+.ipynb_checkpoints/
+
+#Виртуальные окружения
+
+env/ venv/
+
+#Игнорировать результаты агрегации (видны в ноутбуке)
+
+data/carrier_delays.csv
