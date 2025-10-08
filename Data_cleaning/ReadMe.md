@@ -16,8 +16,7 @@ The dataset was cleaned using SQL in DBeaver to ensure data quality before analy
    - Found minor discrepancies (e.g., 99.00 vs. 97.99) due to rounding, as per dataset documentation. No corrections needed.
 7. **Additional checks** (ongoing):
    - Checking for cases where `arr_del15 > arr_flights` (`07_check_del15_vs_flights.sql`).
-   - Checking for inconsistencies with `arr_flights = 0` (`08_check_zero_flights.sql`).
-   - Checking for duplicates (`09_check_duplicates.sql`).
-8. **Prepared cleaned dataset** (`10_create_view_and_export.sql`):
-   - Created a view `flights_cleaned` with calculated metrics (e.g., `delay_rate`, `cancel_rate`).
+   - Checking for duplicates (`08_check_duplicates.sql`).
+8. **Prepared cleaned dataset** (`09_create_view_and_export.sql`):
+   - Created a view `flights_cleaned` with calculated metrics (`delay_rate`, `cancel_rate`).
    - Exported to CSV for analysis in Python.
