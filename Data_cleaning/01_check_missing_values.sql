@@ -1,0 +1,25 @@
+-- Result: 76 gaps in arr_flights, 92 in arr_del15, 76 in the remaining delay columns
+SELECT
+    COUNT(*) AS total_rows,
+    SUM(CASE WHEN year IS NULL THEN 1 ELSE 0 END) AS missing_year,
+    SUM(CASE WHEN month IS NULL THEN 1 ELSE 0 END) AS missing_month,
+    SUM(CASE WHEN carrier IS NULL THEN 1 ELSE 0 END) AS missing_carrier,
+    SUM(CASE WHEN carrier_name IS NULL THEN 1 ELSE 0 END) AS missing_carrier_name,
+    SUM(CASE WHEN airport IS NULL THEN 1 ELSE 0 END) AS missing_airport,
+    SUM(CASE WHEN airport_name IS NULL THEN 1 ELSE 0 END) AS missing_airport_name,
+    SUM(CASE WHEN arr_flights IS NULL THEN 1 ELSE 0 END) AS missing_arr_flights,
+    SUM(CASE WHEN arr_del15 IS NULL THEN 1 ELSE 0 END) AS missing_arr_del15,
+    SUM(CASE WHEN carrier_ct IS NULL THEN 1 ELSE 0 END) AS missing_carrier_ct,
+    SUM(CASE WHEN weather_ct IS NULL THEN 1 ELSE 0 END) AS missing_weather_ct,
+    SUM(CASE WHEN nas_ct IS NULL THEN 1 ELSE 0 END) AS missing_nas_ct,
+    SUM(CASE WHEN security_ct IS NULL THEN 1 ELSE 0 END) AS missing_security_ct,
+    SUM(CASE WHEN late_aircraft_ct IS NULL THEN 1 ELSE 0 END) AS missing_late_aircraft_ct,
+    SUM(CASE WHEN arr_cancelled IS NULL THEN 1 ELSE 0 END) AS missing_arr_cancelled,
+    SUM(CASE WHEN arr_diverted IS NULL THEN 1 ELSE 0 END) AS missing_arr_diverted,
+    SUM(CASE WHEN arr_delay IS NULL THEN 1 ELSE 0 END) AS missing_arr_delay,
+    SUM(CASE WHEN carrier_delay IS NULL THEN 1 ELSE 0 END) AS missing_carrier_delay,
+    SUM(CASE WHEN weather_delay IS NULL THEN 1 ELSE 0 END) AS missing_weather_delay,
+    SUM(CASE WHEN nas_delay IS NULL THEN 1 ELSE 0 END) AS missing_nas_delay,
+    SUM(CASE WHEN security_delay IS NULL THEN 1 ELSE 0 END) AS missing_security_delay,
+    SUM(CASE WHEN late_aircraft_delay IS NULL THEN 1 ELSE 0 END) AS missing_late_aircraft_delay
+FROM flight_delays_raw;
