@@ -1,0 +1,26 @@
+create view flights_cleaned as
+select  
+year,
+    month,
+    carrier,
+    carrier_name,
+    airport,
+    airport_name,
+    arr_flights,
+    arr_del15,
+    arr_del15 / NULLIF(arr_flights, 0) AS delay_rate,
+    arr_cancelled,
+    arr_cancelled / NULLIF(arr_flights, 0) AS cancel_rate,
+    arr_diverted,
+    arr_delay,
+    carrier_ct,
+    weather_ct,
+    nas_ct,
+    security_ct,
+    late_aircraft_ct,
+    carrier_delay,
+    weather_delay,
+    nas_delay,
+    security_delay,
+    late_aircraft_delay
+from flight_delays_raw;
