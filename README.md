@@ -1,105 +1,110 @@
 # U.S. Airline Flight Delay Analysis & Prediction
 
-## Project Overview
-I wanted to understand what makes some flights late and others on time, so I dived into U.S. airline flight data and built a few models to see if we can actually predict delays (15+ minutes).  
+## About This Project
 
-The project covers:  
-* Cleaning up messy real-world data in SQL  
-* Exploring trends and patterns in Python  
-* Engineering some sensible features  
-* Trying out a few machine learning models  
-* Figuring out what actually drives the delays  
+Flight delays are frustrating — sometimes they feel random, sometimes predictable.  
+I wanted to understand what actually drives them and whether we can predict which flights are likely to be significantly delayed (15+ minutes).
 
----
+In this project, I analyze U.S. airline performance data and build a classification model to identify high-risk flights. The idea is simple: use historical patterns, seasonality, airport scale, and airline performance to estimate delay risk.
 
-## Data Cleaning & Preparation (SQL)
-Flight data is messy — missing values, weird zeros, negative delays, duplicates… you know the drill. So I spent some time cleaning it up:  
-* Removed rows where total arrivals were missing  
-* Filled in rows where delays were essentially “cancelled/diverted” flights  
-* Checked for duplicates and impossible negative delays  
-* Exported a clean CSV for Python exploration  
-
-Basically, I made sure the data wasn’t lying to me before modeling.
+This project combines SQL data cleaning, Python-based exploratory analysis, machine learning modeling, and model interpretability.
 
 ---
 
-## Exploring the Data (Python)
-Once the data was clean, I wanted to actually **see what was going on**:  
-* Which months have more delays?  
-* Which airports or airlines are consistently late?  
-* What are the main reasons flights get delayed?  
-* How does flight volume change year over year?  
+## Why I Did This
 
-All of this gave me a good sense of what features might actually matter.
+I wanted to work on a real-world operational dataset — something messy, imperfect, and full of edge cases.
 
----
+Flight data is a great example:
+- Missing values  
+- Cancelled and diverted flights  
+- Rounding inconsistencies  
+- Operational patterns hidden inside aggregated metrics  
 
-## Feature Engineering
-Some quick wins for features:  
-* **Seasonality:** months as sin/cos cycles  
-* **Scale:** log flight volumes, airport size proxy  
-* **History matters:** average delay rate per airline  
-* **Special events:** holiday season flag  
-
-Target variable: `delayed_flag = 1` if `delay_rate ≥ 0.20`.  
-
-Categorical features got one-hot encoded, numeric ones standardized — standard stuff, but makes models happy.
+I also wanted to practice building a full end-to-end pipeline:
+from raw SQL validation all the way to model interpretation using SHAP.
 
 ---
 
-## Modeling
-I tried a few models and compared them:
+## How I Approached the Problem
 
-| Model                  | ROC-AUC |
-|------------------------|---------|
-| Logistic Regression    | 0.74    |
-| Random Forest          | 0.77    |
-| Gradient Boosting      | 0.78    |
-| XGBoost                | 0.80    |
+**Problem type:** Binary classification — predicting whether a flight belongs to a high-delay category (delay_rate ≥ 20%).
 
-XGBoost came out on top, so that’s the one I went with for the final evaluation.
+**Data preparation:**  
+I cleaned and validated the dataset in SQL before exporting it to Python.
+- Removed rows with missing arrival counts  
+- Handled cases where delays corresponded to cancelled/diverted flights  
+- Verified no negative delays  
+- Checked consistency between total delays and delay causes  
+
+**Feature engineering:**  
+- Cyclical encoding of month (sin/cos) to capture seasonality  
+- Log-transformed flight volume (airport scale proxy)  
+- Historical average delay rate per carrier  
+- Holiday season indicator  
+
+**Encoding & scaling:**  
+- One-hot encoding for airport and carrier  
+- Standardization for numerical features  
+
+**Train/test split:**  
+Stratified split to preserve class balance.
 
 ---
 
-## Key Visualizations
+## Model Architecture & Evaluation
 
-### Average Delay Rate by Month
+I tested several models:
+
+| Model               | ROC-AUC |
+|---------------------|---------|
+| Logistic Regression | 0.74    |
+| Random Forest       | 0.77    |
+| Gradient Boosting   | 0.78    |
+| XGBoost             | 0.80    |
+
+XGBoost performed best, so I selected it as the final model.
+
+Evaluation included:
+- Precision, Recall, F1-score  
+- ROC curves  
+- Confusion matrices  
+
+---
+
+## Key Visuals
+
+### Monthly delay trends
 ![Average Delay by Month](figures/avg_delay_by_month.png)
 
-### Airports with Highest Average Delay
+---
+
+### Airports with highest average delays
 ![Airport by Average Delay](figures/airport_by_avg_delay.png)
 
-### Top 10 Carriers by Delay Rate
+---
+
+### Airlines ranked by delay rate
 ![Top 10 Carrier Delays](figures/TOP_10_carrier_delays.png)
 
-### Delay Causes for Top 5 Airlines
+---
+
+### Delay cause breakdown for top delayed carriers
 ![Delay Causes - Top 5 Airlines](figures/Delay_Causes_Top_5_Airlines.png)
 
 ---
 
-## Model Interpretability
-Curious why the model made the predictions it did, I used **SHAP** to peek inside:  
-* Past airline performance matters a lot  
-* Bigger airports with more flights tend to see more delays  
-* Seasonal effects are surprisingly strong  
-* Some carriers or airports just have consistent quirks  
+## Results
+
+The final model achieved a ROC-AUC of **0.80**, which shows solid separation between delayed and non-delayed flights.
+
+What stood out most:
+- Historical airline performance is highly predictive  
+- Larger airports (higher flight volume) tend to have higher delay risk  
+- Seasonal patterns matter more than expected  
+
+Using SHAP helped confirm that the model wasn’t just memorizing noise — it was learning meaningful operational patterns.
 
 ---
 
-## Tech Stack
-* **SQL (DBeaver)** – cleaning & prepping messy data  
-* **Python** – exploring, visualizing, modeling  
-  * pandas, matplotlib, seaborn, scikit-learn, XGBoost, SHAP  
-* **Tableau Public** – interactive dashboards to explore patterns  
-
----
-
-## What I Learned
-Doing this end-to-end was super helpful:  
-* Messy real-world data needs patience  
-* Features really matter — even small ones can make a difference  
-* XGBoost works really well out-of-the-box for this type of task  
-* Visualizations help understand what the model is learning  
-
-This project is a neat example of **data cleaning, EDA, modeling, and interpretation**, all in one place.  
-
+## Repository Structure
