@@ -1,6 +1,6 @@
-# ✈️ U.S. Airline Flight Delay Analysis & Prediction
+# U.S. Airline Flight Delay Analysis & Prediction
 
-## 📌 Project Overview
+## Project Overview
 I wanted to understand what makes some flights late and others on time, so I dived into U.S. airline flight data and built a few models to see if we can actually predict delays (15+ minutes).  
 
 The project covers:  
@@ -12,7 +12,7 @@ The project covers:
 
 ---
 
-## 🗄️ Data Cleaning & Preparation (SQL)
+## Data Cleaning & Preparation (SQL)
 Flight data is messy — missing values, weird zeros, negative delays, duplicates… you know the drill. So I spent some time cleaning it up:  
 * Removed rows where total arrivals were missing  
 * Filled in rows where delays were essentially “cancelled/diverted” flights  
@@ -23,7 +23,7 @@ Basically, I made sure the data wasn’t lying to me before modeling.
 
 ---
 
-## 📊 Exploring the Data (Python)
+## Exploring the Data (Python)
 Once the data was clean, I wanted to actually **see what was going on**:  
 * Which months have more delays?  
 * Which airports or airlines are consistently late?  
@@ -34,7 +34,7 @@ All of this gave me a good sense of what features might actually matter.
 
 ---
 
-## ⚙️ Feature Engineering
+## Feature Engineering
 Some quick wins for features:  
 * **Seasonality:** months as sin/cos cycles  
 * **Scale:** log flight volumes, airport size proxy  
@@ -47,7 +47,7 @@ Categorical features got one-hot encoded, numeric ones standardized — standard
 
 ---
 
-## 🤖 Modeling
+## Modeling
 I tried a few models and compared them:
 
 | Model                  | ROC-AUC |
@@ -61,7 +61,7 @@ XGBoost came out on top, so that’s the one I went with for the final evaluatio
 
 ---
 
-## 📊 Key Visualizations
+## Key Visualizations
 
 ### Average Delay Rate by Month
 ![Average Delay by Month](figures/avg_delay_by_month.png)
@@ -77,7 +77,7 @@ XGBoost came out on top, so that’s the one I went with for the final evaluatio
 
 ---
 
-## 🔎 Model Interpretability
+## Model Interpretability
 Curious why the model made the predictions it did, I used **SHAP** to peek inside:  
 * Past airline performance matters a lot  
 * Bigger airports with more flights tend to see more delays  
@@ -86,7 +86,7 @@ Curious why the model made the predictions it did, I used **SHAP** to peek insid
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 * **SQL (DBeaver)** – cleaning & prepping messy data  
 * **Python** – exploring, visualizing, modeling  
   * pandas, matplotlib, seaborn, scikit-learn, XGBoost, SHAP  
@@ -94,7 +94,7 @@ Curious why the model made the predictions it did, I used **SHAP** to peek insid
 
 ---
 
-## 🚀 What I Learned
+## What I Learned
 Doing this end-to-end was super helpful:  
 * Messy real-world data needs patience  
 * Features really matter — even small ones can make a difference  
