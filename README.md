@@ -61,6 +61,22 @@ XGBoost came out on top, so that’s the one I went with for the final evaluatio
 
 ---
 
+## 📊 Key Visualizations
+
+### Average Delay Rate by Month
+![Average Delay by Month](figures/avg_delay_by_month.png)
+
+### Airports with Highest Average Delay
+![Airport by Average Delay](figures/airport_by_avg_delay.png)
+
+### Top 10 Carriers by Delay Rate
+![Top 10 Carrier Delays](figures/TOP_10_carrier_delays.png)
+
+### Delay Causes for Top 5 Airlines
+![Delay Causes - Top 5 Airlines](figures/Delay_Causes_Top_5_Airlines.png)
+
+---
+
 ## 🔎 Model Interpretability
 Curious why the model made the predictions it did, I used **SHAP** to peek inside:  
 * Past airline performance matters a lot  
