@@ -75,21 +75,25 @@ Evaluation included:
 ## Key Visuals
 
 ### Monthly delay trends
+
 ![Average Delay by Month](figures/avg_delay_by_month.png)
 
 ---
 
 ### Airports with highest average delays
+
 ![Airport by Average Delay](figures/airport_by_avg_delay.png)
 
 ---
 
 ### Airlines ranked by delay rate
+
 ![Top 10 Carrier Delays](figures/TOP_10_carrier_delays.png)
 
 ---
 
 ### Delay cause breakdown for top delayed carriers
+
 ![Delay Causes - Top 5 Airlines](figures/Delay_Causes_Top_5_Airlines.png)
 
 ---
