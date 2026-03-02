@@ -74,25 +74,29 @@ Evaluation included:
 
 ## Key Visuals
 
-### Monthly delay trends
+### Monthly Delay Trends
+Seasonality becomes pretty clear here — some months consistently show higher delay rates.
 
 ![Average Delay by Month](figures/avg_delay_by_month.png)
 
----
 
-### Airports with highest average delays
+
+### Airports with the Highest Average Delays
+A few airports stand out with consistently higher delay rates.
 
 ![Airport by Average Delay](figures/airport_by_avg_delay.png)
 
----
 
-### Airlines ranked by delay rate
+
+### Airlines Ranked by Delay Rate
+Not all carriers perform equally when it comes to punctuality.
 
 ![Top 10 Carrier Delays](figures/TOP_10_carrier_delays.png)
 
----
 
-### Delay cause breakdown for top delayed carriers
+
+### Delay Cause Breakdown for Top Delayed Carriers
+Breaking down what actually drives delays for the worst-performing airlines.
 
 ![Delay Causes - Top 5 Airlines](figures/Delay_Causes_Top_5_Airlines.png)
 
@@ -111,4 +115,5 @@ Using SHAP helped confirm that the model wasn’t just memorizing noise — it w
 
 ---
 
-## Repository Structure
+Delay Cause Breakdown for Top Delayed Carriers
+Breaking down what actually drives delays for the worst-performing airlines.
